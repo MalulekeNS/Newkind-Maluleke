@@ -1,589 +1,512 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Maluleke Newcayen Sevezile - Software Developer</title>
-    <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            padding: 0;
-            min-height: 100vh;
-            background: url('lvf4.jpg') no-repeat center center fixed;
-            background-size: cover;
-            background-position: center;
-            line-height: 1.6;
-            color: #fff;
-            position: relative;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Maluleke Newcayen Sevezile — Software Developer</title>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
-        .overlay {
-            position: fixed;
-            top: 0; left: 0;
-            width: 100vw;
-            height: 100vh;
-            min-height: 100%;
-            background: rgba(8, 24, 45, 0.68);
-            z-index: 1;
-            pointer-events: none;
-        }
+    :root {
+      --bg: hsl(160 15% 4%);
+      --fg: hsl(150 10% 90%);
+      --card: hsl(160 12% 7%);
+      --primary: hsl(155 70% 45%);
+      --primary-fg: hsl(160 15% 4%);
+      --muted: hsl(155 8% 48%);
+      --accent: hsl(40 85% 60%);
+      --border: hsl(160 8% 14%);
+    }
 
-        .content-container {
-            position: relative;
-            z-index: 2;
-        }
+    body {
+      font-family: 'Sora', sans-serif;
+      background: var(--bg);
+      color: var(--fg);
+      line-height: 1.6;
+    }
 
-        header {
-            background: transparent;
-            color: #fff;
-            text-align: center;
-            padding: 4rem 1rem 2rem 1rem;
-        }
+    .mono { font-family: 'IBM Plex Mono', monospace; }
 
-        #header-container {
-            background-color: rgba(0, 0, 0, 0.45);
-            padding: 2.5rem;
-            border-radius: 20px;
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.25);
-            max-width: 600px;
-            margin: 0 auto;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-            text-align: center;
-        }
+    .text-gradient {
+      background: linear-gradient(135deg, hsl(155 70% 55%), hsl(40 85% 60%));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
 
-        .profile-pic {
-            width: 180px;
-            height: 150px;
-            object-fit: cover;
-            border-radius: 50%;
-            border: 3.5px solid #fff;
-            box-shadow: 0 6px 24px rgba(0,0,0,0.21), 0 2px 4px rgba(255,255,255,0.10) inset;
-            margin-bottom: 1.1rem;
-            background: #e6e2d3;
-        }
+    /* ─── Hero ─── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      opacity: 0.5;
+    }
+    .hero-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to bottom, rgba(10,20,14,0.3), rgba(10,20,14,0.6), var(--bg));
+    }
+    .hero-content { position: relative; z-index: 2; padding: 2rem; }
+    .hero-label {
+      font-size: 0.8rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--primary);
+      margin-bottom: 1.5rem;
+    }
+    .hero h1 {
+      font-size: clamp(3rem, 8vw, 6rem);
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      line-height: 0.9;
+    }
+    .hero h1 .dim { opacity: 0.5; }
 
-        #header-container h1 {
-            font-size: 2.5rem;
-            margin-bottom: 0.5rem;
-            font-weight: 700;
-            text-shadow: 2px 2px 8px rgba(0,0,0,0.35);
-            letter-spacing: -0.5px;
-            color: #fff;
-        }
+    .hero-links {
+      display: flex;
+      gap: 1.25rem;
+      justify-content: center;
+      margin-top: 2.5rem;
+    }
+    .hero-links a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+      color: var(--fg);
+      text-decoration: none;
+      transition: all 0.3s;
+    }
+    .hero-links a:hover {
+      border-color: var(--primary);
+      background: rgba(34,197,94,0.1);
+    }
+    .hero-links svg { width: 18px; height: 18px; }
 
-        #header-container p {
-            font-size: 1.3rem;
-            margin: 0;
-            opacity: 0.95;
-            font-weight: 300;
-            color: #fff;
-        }
+    /* ─── Layout ─── */
+    .container { max-width: 72rem; margin: 0 auto; padding: 0 1.5rem; }
+    @media (min-width: 768px) { .container { padding: 0 3rem; } }
 
-        section {
-            max-width: 900px;
-            margin: 2.5rem auto;
-            padding: 2.5rem;
-            background-color: rgba(0,0,0,0.45);
-            color: #fff;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.30);
-            border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.18);
-            backdrop-filter: blur(12px);
-            transition: all 0.3s ease;
-        }
+    .section { padding: 6rem 0; border-bottom: 1px solid var(--border); }
+    .section:last-of-type { border-bottom: none; }
 
-        section:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.18);
-        }
+    .section-grid {
+      display: grid;
+      gap: 2rem;
+    }
+    @media (min-width: 768px) {
+      .section-grid { grid-template-columns: 200px 1fr; }
+    }
 
-        h1, h2, h3 {
-            color: #fff;
-        }
+    .section-label {
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--primary);
+      padding-top: 0.25rem;
+    }
 
-        h2 {
-            font-size: 2rem;
-            margin-bottom: 1.5rem;
-            position: relative;
-            padding-bottom: 0.5rem;
-            text-shadow: 1px 2px 10px rgba(0,0,0,0.22);
-            letter-spacing: 0.02em;
-        }
+    .about-text {
+      color: rgba(220,230,225,0.75);
+      font-size: 1.125rem;
+      line-height: 1.7;
+      max-width: 48rem;
+    }
 
-        h2::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 40px;
-            height: 2.5px;
-            background: linear-gradient(90deg, #fff, #bbb);
-            border-radius: 2px;
-            opacity: 0.5;
-        }
+    /* ─── Skills ─── */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+    }
+    @media (min-width: 1024px) { .skills-grid { grid-template-columns: repeat(4, 1fr); } }
 
-        h3 {
-            color: #fff;
-            text-shadow: 1px 2px 8px rgba(0,0,0,0.18);
-        }
+    .skill-group-label {
+      display: flex; align-items: center; gap: 0.5rem;
+      margin-bottom: 1rem;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+    }
+    .skill-group-label svg { width: 14px; height: 14px; color: var(--primary); }
+    .skill-item {
+      font-size: 0.875rem;
+      color: rgba(220,230,225,0.65);
+      padding: 0.3rem 0;
+      transition: color 0.2s;
+      list-style: none;
+    }
+    .skill-item:hover { color: var(--primary); }
 
-        a {
-            color: #99cfff;
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
+    /* ─── Projects ─── */
+    .project {
+      padding: 1.5rem 0;
+      border-bottom: 1px solid rgba(160,180,170,0.08);
+    }
+    .project:last-child { border-bottom: none; }
 
-        a:hover {
-            color: #fff;
-            text-decoration: underline;
-        }
+    .project-header {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 0.25rem;
+    }
+    .project-num {
+      font-size: 0.75rem;
+      color: var(--muted);
+    }
+    .project-title {
+      font-weight: 600;
+      font-size: 1rem;
+      color: var(--fg);
+    }
+    .project-badge {
+      font-size: 0.6rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      padding: 0.15rem 0.6rem;
+      border-radius: 999px;
+      border: 1px solid rgba(210,170,80,0.3);
+      color: var(--accent);
+    }
+    .project-desc {
+      font-size: 0.875rem;
+      color: var(--muted);
+      margin-left: 2.25rem;
+    }
+    .project-tech {
+      font-size: 0.7rem;
+      color: rgba(155,170,165,0.5);
+      margin-left: 2.25rem;
+      margin-top: 0.25rem;
+    }
+    .visit-btn {
+      display: inline-block;
+      margin-left: 2.25rem;
+      margin-top: 0.75rem;
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.5rem 1.25rem;
+      border-radius: 999px;
+      border: 1px solid rgba(34,197,94,0.4);
+      color: var(--primary);
+      background: transparent;
+      text-decoration: none;
+      transition: all 0.3s;
+    }
+    .visit-btn:hover {
+      background: var(--primary);
+      color: var(--primary-fg);
+    }
 
-        ul {
-            list-style: none;
-            padding: 0;
-        }
+    /* ─── Credentials ─── */
+    .diploma {
+      margin-bottom: 2rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid rgba(160,180,170,0.08);
+    }
+    .diploma-title { font-size: 1.125rem; font-weight: 600; }
+    .diploma-place { font-size: 0.875rem; color: var(--muted); margin-top: 0.25rem; }
 
-        li {
-            margin-bottom: 0.8rem;
-            padding: 0.5rem 0;
-            border-bottom: 1px solid rgba(255,255,255,0.09);
-            transition: all 0.3s ease;
-            color: #fff;
-        }
+    .certs-grid {
+      display: grid;
+      gap: 0.75rem;
+    }
+    @media (min-width: 640px) { .certs-grid { grid-template-columns: 1fr 1fr; gap: 0.75rem 2rem; } }
 
-        li:hover {
-            padding-left: 1rem;
-            background-color: rgba(255,255,255,0.07);
-            border-radius: 5px;
-        }
+    .cert-item {
+      display: flex;
+      align-items: baseline;
+      gap: 0.75rem;
+      font-size: 0.875rem;
+      color: rgba(220,230,225,0.7);
+    }
+    .cert-num { font-size: 0.75rem; color: var(--primary); }
 
-        li:last-child {
-            border-bottom: none;
-        }
+    /* ─── Contact ─── */
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      color: rgba(220,230,225,0.7);
+      text-decoration: none;
+      font-size: 0.875rem;
+      padding: 0.6rem 0;
+      transition: color 0.2s;
+    }
+    .contact-item:hover { color: var(--primary); }
+    .contact-item svg { width: 16px; height: 16px; color: var(--muted); transition: color 0.2s; }
+    .contact-item:hover svg { color: var(--primary); }
 
-        /* NB statement in red */
-        .nb-statement {
-            color: #ff3b3b;
-            font-weight: bold;
-            font-style: italic;
-            display: block;
-            margin-top: 0.5em;
-            margin-bottom: 0.5em;
-        }
+    /* ─── Footer ─── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2rem 0;
+      text-align: center;
+      font-size: 0.7rem;
+      color: var(--muted);
+    }
 
-        /* ==== Horizontal Skills Columns ==== */
-        .skills-flex {
-            display: flex;
-            gap: 2.5rem;
-            justify-content: center;
-            align-items: flex-start;
-            flex-wrap: wrap;
-        }
-        .skills-col {
-            min-width: 170px;
-            margin-bottom: 1.5rem;
-        }
-        .skills-heading {
-            font-weight: bold;
-            text-decoration: underline;
-            margin-bottom: 1rem;
-            font-size: 1.13rem;
-            letter-spacing: 0.01em;
-        }
-        .skills-col ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-        .skills-col li {
-            border: none;
-            background: none;
-            padding: 0.18em 0;
-            margin: 0 0 0.12em 0;
-            color: #fff;
-            font-size: 1.04rem;
-            transition: color 0.22s;
-        }
-        .skills-col li:hover {
-            color: #ffe399;
-        }
-        @media (max-width: 900px) {
-            .skills-flex { gap: 1.5rem; }
-            .skills-col { min-width: 140px; }
-        }
-        @media (max-width: 600px) {
-            .skills-flex { flex-direction: column; gap: 0.6rem; }
-            .skills-col { min-width: 0; }
-        }
+    /* ─── Animations ─── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .animate { animation: fadeUp 0.6s ease-out both; }
+    .delay-1 { animation-delay: 0.1s; }
+    .delay-2 { animation-delay: 0.2s; }
+    .delay-3 { animation-delay: 0.3s; }
+    .delay-4 { animation-delay: 0.4s; }
 
-        .project {
-            border-bottom: 2px solid rgba(255,255,255,0.09);
-            padding-bottom: 1.5rem;
-            margin-bottom: 2rem;
-            background: linear-gradient(135deg, rgba(255,255,255,0.03) 0%, rgba(170, 200, 250, 0.07) 50%, rgba(80, 147, 200, 0.02) 100%);
-            padding: 1.5rem;
-            border-radius: 15px;
-            border-left: 4px solid transparent;
-            border-image: linear-gradient(135deg, #9ce0ff, #6a8dff) 1;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(8px);
-            color: #fff;
-        }
-
-        .project:hover {
-            transform: translateX(10px) translateY(-2px);
-            box-shadow: 0 8px 25px rgba(80, 120, 255, 0.08);
-            background: linear-gradient(135deg, rgba(102, 126, 234, 0.09) 0%, rgba(118, 75, 162, 0.12) 50%, rgba(240, 147, 251, 0.08) 100%);
-        }
-
-        .project:last-child {
-            border-bottom: none;
-            margin-bottom: 0;
-        }
-
-        .project h3 {
-            color: #fff;
-            font-size: 1.4rem;
-            margin-bottom: 1rem;
-            font-weight: 600;
-            text-shadow: 1px 2px 8px rgba(0,0,0,0.18);
-        }
-
-        .project p {
-            color: #eee;
-            line-height: 1.7;
-            margin-bottom: 1.5rem;
-        }
-
-        .project a {
-            background: linear-gradient(135deg, #2c3e50, #3498db, #8e44ad);
-            color: #fff;
-            padding: 0.75rem 1.5rem;
-            border-radius: 25px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            font-size: 0.9rem;
-            box-shadow: 0 4px 15px rgba(44,62,80,0.2);
-            transition: all 0.3s ease;
-            display: inline-block;
-        }
-
-        .project a:hover {
-            background: linear-gradient(135deg, #3498db, #2c3e50, #8e44ad);
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(44,62,80,0.25);
-            text-decoration: none;
-        }
-
-        /* Certificates Card */
-        .education-card {
-            background: linear-gradient(135deg, rgba(255,255,255,0.09), rgba(80,147,200,0.04));
-            color: #fff;
-            padding: 1.5rem 2rem 1.2rem 2rem;
-            margin-bottom: 1.5rem;
-            border-radius: 15px;
-            border-left: 4px solid #9ce0ff;
-            box-shadow: 0 6px 16px rgba(0,0,0,0.14);
-            text-align: left;
-            font-size: 1.09rem;
-        }
-        .education-card b {
-            font-size: 1.13rem;
-            letter-spacing: 0.02em;
-        }
-        .education-card .place {
-            font-size: 0.98rem;
-            color: #cbe7ff;
-            margin-top: 0.2em;
-            display: block;
-        }
-
-        section:last-child {
-            background: rgba(0,0,0,0.45);
-            color: #fff;
-            border: 1px solid rgba(255,255,255,0.18);
-        }
-        section:last-child h2 {
-            color: #fff;
-        }
-        section:last-child h2::after {
-            background: linear-gradient(90deg, #fff, #bbb);
-        }
-        section:last-child p, section:last-child a {
-            color: #fff;
-        }
-
-        /* Contact section gold link gradient */
-        section:last-child a {
-            background: linear-gradient(90deg, #ffd700, #ffcc80);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            text-fill-color: transparent;
-            font-weight: 600;
-            text-decoration: underline;
-            transition: all 0.3s;
-        }
-        section:last-child a:hover {
-            background: linear-gradient(90deg, #ffdf00, #ffe680, #fff3b0);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            text-fill-color: transparent;
-            filter: brightness(1.19);
-        }
-
-        @media (max-width: 768px) {
-            #header-container {
-                padding: 2rem 1.5rem;
-                margin: 0 1rem;
-            }
-            #header-container h1 { font-size: 2rem; }
-            #header-container p { font-size: 1.1rem; }
-            section { margin: 1.5rem 1rem; padding: 2rem 1.5rem; }
-            h2 { font-size: 1.6rem; }
-            .project { padding: 1.25rem; }
-            .education-card { padding: 1.1rem 1rem 1rem 1rem; }
-            .profile-pic { width: 92px; height: 92px; }
-        }
-
-        @media (max-width: 480px) {
-            #header-container h1 { font-size: 1.6rem; }
-            section { padding: 1.5rem 1rem; }
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        section {
-            animation: fadeInUp 0.6s ease-out;
-        }
-        section:nth-child(2) { animation-delay: 0.1s; }
-        section:nth-child(3) { animation-delay: 0.2s; }
-        section:nth-child(4) { animation-delay: 0.3s; }
-        section:nth-child(5) { animation-delay: 0.4s; }
-        section:nth-child(6) { animation-delay: 0.5s; }
-    </style>
+    @keyframes bounce { 0%,100% { transform: translateY(0); } 50% { transform: translateY(8px); } }
+    .scroll-indicator {
+      position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%);
+      width: 20px; height: 32px; border-radius: 999px; border: 2px solid rgba(220,230,225,0.2);
+      display: flex; align-items: flex-start; justify-content: center; padding-top: 6px;
+    }
+    .scroll-dot {
+      width: 4px; height: 6px; border-radius: 999px; background: var(--primary);
+      animation: bounce 2s infinite;
+    }
+  </style>
 </head>
-
 <body>
-    <div class="overlay"></div>
-    <div class="content-container">
 
-    <header>
-        <div id="header-container">
-            <!-- Profile image holder: replace src with your profile picture filename -->
-            <img src="1212.jpg" alt="Profile Picture" class="profile-pic">
-            <h1>Maluleke Newcayen Sevezile</h1>
-            <p>Software Developer</p>
-        </div>
-    </header>
-
-    <section>
-        <h2>About Me</h2>
-        <p>
-            Maluleke Newcayen Sevezile is a skilled Full Stack software developer proficient in <span class="skills-list">HTML, CSS, JavaScript, Java, C#, SQL</span>, and C++. With expertise in WordPress, he combines <span class="skills-list">front-end</span> and back-end technologies to create dynamic and responsive applications. His extensive portfolio includes projects demonstrating proficiency in AWS, Microsoft, Huawei, and Google technologies. Certified by these industry giants, Maluleke is dedicated to delivering innovative and scalable software solutions to solve real-world problems.
-        </p>
-    </section>
-
-    <!-- SKILLS: Horizontal Columns -->
-    <section>
-        <h2>Skills</h2>
-        <div class="skills-flex">
-            <div class="skills-col">
-                <div class="skills-heading">BACK-END</div>
-                <ul>
-                    <li>Springboot</li>
-                    <li>Java</li>
-                    <li>C#</li>
-                    <li>Node.js</li>
-                    <li>Python</li>
-                    <li>PHP</li>
-                </ul>
-            </div>
-            <div class="skills-col">
-                <div class="skills-heading">FRONT-END</div>
-                <ul>
-                    <li>HTML</li>
-                    <li>CSS</li>
-                    <li>JAVASCRIPT</li>
-                    <li>Bootstrap</li>
-                    <li>React.js</li>
-                </ul>
-            </div>
-            <div class="skills-col">
-                <div class="skills-heading">DATABASE</div>
-                <ul>
-                    <li>SQL</li>
-                    <li>FIREBASE</li>
-                    <li>NoSQL</li>
-                    <li>PL/SQL</li>
-                    <li>PostgreSQL</li>
-                </ul>
-            </div>
-            <div class="skills-col">
-                <div class="skills-heading">SECURITY INTEGRATION</div>
-                <ul>
-                    <li>Linux</li>
-                    <li>Ubuntu</li>
-                </ul>
-            </div>
-        </div>
-    </section>
-
-    <section>
-        <h2>Projects</h2>
-         <div class="project">
-            <h3>1. EduPath</h3>
-            <p>Ai driven platform to guide high school learners on Career path and Generate quizes for Tertiary Students.<br>
-            <strong>Tech Stack:</strong> React.js, PHP, MongoDB</p>
-            <a href="https://afbcrm.co.za/" target="_blank">Visit Site</a>
-        </div>
-        <div class="project">
-            <h3>2. TAP | Talent Acceleration Program website</h3>
-            <p>A platform for IT training, recruitment, and consulting services.<br>
-            <strong>Tech Stack:</strong> React.js, Node.js, PostgreSQL</p>
-            <a href="https://tap.kesug.com/?i=1" target="_blank">Visit Site</a>
-        </div>
-        <div class="project">
-            <h3>3. Mentorship Management System</h3>
-            <p>
-                A platform for booking student-mentor consultation sessions.<br>
-                <strong>Tech Stack:</strong> PHP, MySQL, Bootstrap<br>
-                <span class="nb-statement">NB: It is a team collaboration project.</span>
-            </p>
-            <a href="https://www.mentormanagementsystem.co.za/" target="_blank">Visit Site</a>
-        </div>
-
-        <div class="project">
-    <h3>4. Business Analysis Documentation</h3>
-    <p>
-        A structured portfolio reporting framework used to assess company investor readiness and support funding decisions for DFIs, private equity and venture capital funds, corporate investment committees, and grant or blended finance programmes.<br>
-        The framework evaluates financial readiness, governance, operations, market position, IT enablement, and compliance using business plans, As-Is and To-Be analyses, growth plans, market analysis, strategic roadmaps, financial reports, and credit rating reports.<br>
-        <strong>Tech Stack:</strong> Data Analytics
-    </p>
-            <a href="https://malulekens.github.io/Business-Analysis/" target="_blank">Visit Site</a>
-</div>
-
-        <div class="project">
-            <h3>5. Innobiz Group Company</h3>
-            <p>A research company website focused on AI and digital innovation.<br>
-            <strong>Tech Stack:</strong> HTML, CSS, JavaScript</p>
-            <a href="https://malulekens.github.io/Innobiz-Group" target="_blank">Visit Site</a>
-        </div>
-        <div class="project">
-            <h3>6. Recruitment Management System</h3>
-            <p>A job search and application platform.<br>
-            <strong>Tech Stack:</strong> PHP, MySQL, Bootstrap</p>
-            <a href="https://www.recruitmentmanagementsystem.co.za/" target="_blank">Visit Site</a>
-        </div>
-        <div class="project">
-            <h3>7. Spelete website</h3>
-            <p>
-                An e-commerce website for an online store that sells clothing brands from sneakers, shirts, pants, hoodies and side bags.<br>
-                <strong>Tech Stack:</strong> Java, MariaDB, Bootstrap<br>
-                <span class="nb-statement">NB: It is an ongoing project still being built to be completed soon.</span>
-            </p>
-            <a href="https://malulekens.github.io/Spelete/" target="_blank">Visit Site</a>
-        </div>
-        <div class="project">
-            <h3>8. Dynasty Publishing</h3>
-            <p>A media and advertising agency company for news outlets in advertising and publishing.<br>
-            <strong>Tech Stack:</strong> HTML, CSS, JavaScript</p>
-            <a href="https://malulekens.github.io/Dynasty-Publishing/" target="_blank">Visit Site</a>
-        </div>
-        <div class="project">
-            <h3>9. NLSA staff Performance Management system</h3>
-            <p>
-                A data capturing system for rating company employee performance and evaluation.<br>
-                <strong>Tech Stack:</strong> C#, HTML, CSS, JavaScript, Firebase<br>
-                <span class="nb-statement">NB: It is an ongoing project still being built to be completed soon.</span>
-            </p>
-            <a href="https://malulekens.github.io/Perfomance_system/" target="_blank">Visit Site</a>
-        </div>
-        <div class="project">
-            <h3>10. Salesforce Platform</h3>
-            <p>An ALL-IN-ONE platform for CRM, ERP, Inventory Management and Market place for SMME's and small start-ups companies.<br>
-            <strong>Tech Stack:</strong> Python, HTML, CSS, JavaScript, PL/SQL</p>
-            <a href="https://malulekens.github.io/Salesforce/" target="_blank">Visit Site</a>
-            <span class="nb-statement">NB: It is an ongoing project still being built to be completed soon.</span>
-        </div>
-        <div class="project">
-            <h3>11. InspectWise App</h3>
-            <p>An intelligent inspection app for workplace safety and compliance.<br>
-            <strong>Tech Stack:</strong> PHP, HTML, CSS, JavaScript, SQL</p>
-            <a href="https://malulekens.github.io/InspectWise/"_blank">Visit Site</a>
-        </div>
-
-         <div class="project">
-            <h3>12. Car Hiring System</h3>
-            <p>A system where you book a car of your choice and taste, depending on the purpose of the event such as wedding, funeral, party etc...<br>
-            <strong>Tech Stack:</strong>Tech Stack: HTML, CSS, JavaAcript, PHP</p>
-            <a href="https://malulekens.github.io/CarHiring/" target="_blank">Visit Site</a>
-        </div>
-
-        <div class="project">
-            <h3>13. African Bank</h3>
-            <p>An internal portal for SMME’s and Start-ups companies for African Bank.<br>
-            <strong>Tech Stack:</strong>Tech Stack: PHP, HTML, CSS, JavaAcript, SQL</p>
-            <a href="https://malulekens.github.io/AfricanBank_Programme/">Visit Site</a>
-            <span class="nb-statement">NB: This is a mock-up, the real production link can't be public due to organization policy.</span>
-        </div>
-
-        <div class="project">
-            <h3>14. Munsell Charter</h3>
-            <p>An agricultural App for predicting soil color.<br>
-            <strong>Tech Stack:</strong>Tech Stack: Python, HTML, CSS, JavaAcript, MongoDB</p>
-            <a href="https://malulekens.github.io/Munsel_charter/">Visit Site</a>
-        </div>
-    </section>
-
-    <!-- Certificates Section -->
-    <section>
-        <h2>Certificates & Qualifications</h2>
-        <div class="education-card">
-            <b>National Diploma, Computer Science (Software Development)</b><br>
-            Tshwane University of Technology (TUT)
-            <span class="place">Pretoria, South Africa</span>
-        </div>
-        <ul class="skills-list">
-            <li><strong>1. AWS Cloud Computing</strong> (AWS Academy)</li>
-            <li><strong>2. AWS Cloud Technical Essentials</strong> (Amazon AWS)</li>
-            <li><strong>3. AWS Business Support</strong> (Amazon AWS)</li>
-            <li><strong>4.1 NSE 1 | 4.2 NSE 2 | 4.3 NSE 3 | 4.4 NSE 4</strong> (Fortinet)</li>
-            <li><strong>5. Microsoft SC-900 Security Certification</strong> (Microsoft)</li>
-            <li><strong>6. Google Backend Developer Certification</strong> (Google)</li>
-            <li><strong>7. Big Data</strong> (Huawei)</li>
-        </ul>
-    </section>
-    <!-- End Certificates Section -->
-
-    <section>
-        <h2>Contact</h2>
-        <p>Call: 083 943 8335</p>
-        <p>Email: <a href="mailto:newcayensm@gmail.com">newcayensm@gmail.com</a></p>
-        <p>LinkedIn: <a href="https://www.linkedin.com/in/newcayen-maluleke/" target="_blank">linkedin.com/in/newcayen-maluleke</a></p>
-        <p>GitHub: <a href="https://github.com/MalulekeNS" target="_blank">github.com/MalulekeNS</a></p>
-    </section>
-
+  <!-- ─── Hero ─── -->
+  <section class="hero">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <p class="mono hero-label">Software Developer</p>
+      <h1>
+        Maluleke<br>
+        <span class="text-gradient">Newcayen</span><br>
+        <span class="dim">Sevezile</span>
+      </h1>
+      <div class="hero-links">
+        <a href="https://github.com/MalulekeNS" target="_blank" rel="noopener noreferrer">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.4 5.4 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65S8.93 17.38 9 18v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
+        </a>
+        <a href="https://linkedin.com/in/newcayen-maluleke" target="_blank" rel="noopener noreferrer">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
+        </a>
+        <a href="mailto:newcayensm@gmail.com">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+        </a>
+      </div>
     </div>
+    <div class="scroll-indicator"><div class="scroll-dot"></div></div>
+  </section>
+
+  <div class="container">
+
+    <!-- ─── About ─── -->
+    <section class="section animate">
+      <div class="section-grid">
+        <h2 class="mono section-label">About</h2>
+        <p class="about-text">
+          Full Stack developer proficient in HTML, CSS, JavaScript, Java, C#, SQL, and C++.
+          Combines front-end and back-end expertise with WordPress to build dynamic, responsive applications.
+          Certified by AWS, Microsoft, Google, Huawei, and Fortinet — dedicated to innovative, scalable solutions.
+        </p>
+      </div>
+    </section>
+
+    <!-- ─── Skills ─── -->
+    <section class="section animate delay-1">
+      <div class="section-grid">
+        <h2 class="mono section-label">Skills</h2>
+        <div class="skills-grid">
+          <div>
+            <div class="mono skill-group-label">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m18 16 4-4-4-4"/><path d="m6 8-4 4 4 4"/><path d="m14.5 4-5 16"/></svg>
+              Back-End
+            </div>
+            <ul><li class="skill-item">Springboot</li><li class="skill-item">Java</li><li class="skill-item">C#</li><li class="skill-item">Node.js</li><li class="skill-item">Python</li><li class="skill-item">PHP</li></ul>
+          </div>
+          <div>
+            <div class="mono skill-group-label">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>
+              Front-End
+            </div>
+            <ul><li class="skill-item">HTML</li><li class="skill-item">CSS</li><li class="skill-item">JavaScript</li><li class="skill-item">Bootstrap</li><li class="skill-item">React.js</li></ul>
+          </div>
+          <div>
+            <div class="mono skill-group-label">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5V19A9 3 0 0 0 21 19V5"/><path d="M3 12A9 3 0 0 0 21 12"/></svg>
+              Database
+            </div>
+            <ul><li class="skill-item">SQL</li><li class="skill-item">Firebase</li><li class="skill-item">NoSQL</li><li class="skill-item">PL/SQL</li><li class="skill-item">PostgreSQL</li></ul>
+          </div>
+          <div>
+            <div class="mono skill-group-label">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/></svg>
+              Security
+            </div>
+            <ul><li class="skill-item">Linux</li><li class="skill-item">Ubuntu</li></ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── Projects ─── -->
+    <section class="section animate delay-2">
+      <div class="section-grid">
+        <h2 class="mono section-label">Projects</h2>
+        <div>
+          <div class="project">
+            <div class="project-header"><span class="mono project-num">01</span><span class="project-title">EduPath</span></div>
+            <p class="project-desc">AI-driven platform guiding learners on career paths & generating quizzes.</p>
+            <p class="mono project-tech">React.js · PHP · MongoDB</p>
+            <a href="https://edupath-umber.vercel.app" target="_blank" class="mono visit-btn">Visit Website</a>
+          </div>
+          <div class="project">
+            <div class="project-header"><span class="mono project-num">02</span><span class="project-title">TAP | Talent Acceleration Program</span></div>
+            <p class="project-desc">IT training, recruitment, and consulting platform.</p>
+            <p class="mono project-tech">React.js · Node.js · PostgreSQL</p>
+            <a href="https://www.taptechacademy.co.za" target="_blank" class="mono visit-btn">Visit Website</a>
+          </div>
+          <div class="project">
+            <div class="project-header"><span class="mono project-num">03</span><span class="project-title">Mentorship Management System</span><span class="mono project-badge">Team project</span></div>
+            <p class="project-desc">Student-mentor consultation booking platform.</p>
+            <p class="mono project-tech">PHP · MySQL · Bootstrap</p>
+            <a href="https://mentorship-ms.000webhostapp.com" target="_blank" class="mono visit-btn">Visit Website</a>
+          </div>
+          <div class="project">
+            <div class="project-header"><span class="mono project-num">04</span><span class="project-title">Business Analysis Documentation</span></div>
+            <p class="project-desc">Portfolio reporting framework for investor readiness assessment.</p>
+            <p class="mono project-tech">Data Analytics</p>
+            <a href="https://innobiz-ba.vercel.app/" target="_blank" class="mono visit-btn">Visit Website</a>
+          </div>
+          <div class="project">
+            <div class="project-header"><span class="mono project-num">05</span><span class="project-title">Innobiz Group Company</span></div>
+            <p class="project-desc">Research company website for AI and digital innovation.</p>
+            <p class="mono project-tech">HTML · CSS · JavaScript</p>
+            <a href="https://innobizgroup.co.za" target="_blank" class="mono visit-btn">Visit Website</a>
+          </div>
+          <div class="project">
+            <div class="project-header"><span class="mono project-num">06</span><span class="project-title">Recruitment Management System</span></div>
+            <p class="project-desc">Job search and application platform.</p>
+            <p class="mono project-tech">PHP · MySQL · Bootstrap</p>
+            <a href="https://recruitment-ms.000webhostapp.com/" target="_blank" class="mono visit-btn">Visit Website</a>
+          </div>
+          <div class="project">
+            <div class="project-header"><span class="mono project-num">07</span><span class="project-title">Spelete Website</span><span class="mono project-badge">In progress</span></div>
+            <p class="project-desc">E-commerce clothing store — sneakers, shirts, hoodies.</p>
+            <p class="mono project-tech">Java · MariaDB · Bootstrap</p>
+            <a href="https://spelete.vercel.app/" target="_blank" class="mono visit-btn">Visit Website</a>
+          </div>
+          <div class="project">
+            <div class="project-header"><span class="mono project-num">08</span><span class="project-title">Dynasty Publishing</span></div>
+            <p class="project-desc">Media & advertising agency for news outlets.</p>
+            <p class="mono project-tech">HTML · CSS · JavaScript</p>
+            <a href="https://dynastypublishing.co.za" target="_blank" class="mono visit-btn">Visit Website</a>
+          </div>
+          <div class="project">
+            <div class="project-header"><span class="mono project-num">09</span><span class="project-title">NLSA Performance Management</span><span class="mono project-badge">In progress</span></div>
+            <p class="project-desc">Employee performance rating & evaluation system.</p>
+            <p class="mono project-tech">C# · Firebase · JavaScript</p>
+            <a href="https://nlsa-pms.vercel.app/" target="_blank" class="mono visit-btn">Visit Website</a>
+          </div>
+          <div class="project">
+            <div class="project-header"><span class="mono project-num">10</span><span class="project-title">Salesforce Platform</span><span class="mono project-badge">In progress</span></div>
+            <p class="project-desc">All-in-one CRM, ERP & marketplace for SMMEs.</p>
+            <p class="mono project-tech">Python · PL/SQL · JavaScript</p>
+            <a href="https://salesforce-platform.vercel.app/" target="_blank" class="mono visit-btn">Visit Website</a>
+          </div>
+          <div class="project">
+            <div class="project-header"><span class="mono project-num">11</span><span class="project-title">InspectWise App</span></div>
+            <p class="project-desc">Workplace safety inspection & compliance app.</p>
+            <p class="mono project-tech">PHP · SQL · JavaScript</p>
+            <a href="https://inspectwise.vercel.app/" target="_blank" class="mono visit-btn">Visit Website</a>
+          </div>
+          <div class="project">
+            <div class="project-header"><span class="mono project-num">12</span><span class="project-title">Car Hiring System</span></div>
+            <p class="project-desc">Vehicle booking for events — weddings, parties & more.</p>
+            <p class="mono project-tech">PHP · HTML · CSS · JS</p>
+            <a href="https://car-hiring.000webhostapp.com/" target="_blank" class="mono visit-btn">Visit Website</a>
+          </div>
+          <div class="project">
+            <div class="project-header"><span class="mono project-num">13</span><span class="project-title">African Bank Portal</span><span class="mono project-badge">Mock-up</span></div>
+            <p class="project-desc">Internal portal for SMMEs and start-ups.</p>
+            <p class="mono project-tech">PHP · SQL · JavaScript</p>
+            <a href="https://africanbank-portal.vercel.app/" target="_blank" class="mono visit-btn">Visit Website</a>
+          </div>
+          <div class="project">
+            <div class="project-header"><span class="mono project-num">14</span><span class="project-title">Munsell Charter</span></div>
+            <p class="project-desc">Agricultural app for predicting soil color.</p>
+            <p class="mono project-tech">Python · MongoDB · JavaScript</p>
+            <a href="https://munsell-charter.vercel.app/" target="_blank" class="mono visit-btn">Visit Website</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── Credentials ─── -->
+    <section class="section animate delay-3">
+      <div class="section-grid">
+        <h2 class="mono section-label">Credentials</h2>
+        <div>
+          <div class="diploma">
+            <p class="diploma-title">National Diploma — Computer Science</p>
+            <p class="diploma-place">Tshwane University of Technology · Pretoria, South Africa</p>
+          </div>
+          <div class="certs-grid">
+            <div class="cert-item"><span class="mono cert-num">01</span> AWS Cloud Computing — AWS Academy</div>
+            <div class="cert-item"><span class="mono cert-num">02</span> AWS Cloud Technical Essentials — Amazon</div>
+            <div class="cert-item"><span class="mono cert-num">03</span> AWS Business Support — Amazon</div>
+            <div class="cert-item"><span class="mono cert-num">04</span> NSE 1 · 2 · 3 · 4 — Fortinet</div>
+            <div class="cert-item"><span class="mono cert-num">05</span> SC-900 Security — Microsoft</div>
+            <div class="cert-item"><span class="mono cert-num">06</span> Backend Developer — Google</div>
+            <div class="cert-item"><span class="mono cert-num">07</span> Big Data — Huawei</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── Contact ─── -->
+    <section class="section animate delay-4" style="border-bottom:none;">
+      <div class="section-grid">
+        <h2 class="mono section-label">Contact</h2>
+        <div>
+          <a href="tel:0839438335" class="contact-item">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            083 943 8335
+          </a>
+          <a href="mailto:newcayensm@gmail.com" class="contact-item">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+            newcayensm@gmail.com
+          </a>
+          <a href="https://linkedin.com/in/newcayen-maluleke" target="_blank" class="contact-item">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
+            linkedin.com/in/newcayen-maluleke
+          </a>
+          <a href="https://github.com/MalulekeNS" target="_blank" class="contact-item">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.4 5.4 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65S8.93 17.38 9 18v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
+            github.com/MalulekeNS
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <footer>
+    <p class="mono">© 2026 Maluleke Newcayen Sevezile</p>
+  </footer>
+
 </body>
 </html>
-
-
-
-
-
-
-
