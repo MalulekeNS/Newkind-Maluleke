@@ -272,16 +272,6 @@
     .delay-3 { animation-delay: 0.3s; }
     .delay-4 { animation-delay: 0.4s; }
 
-    @keyframes bounce { 0%,100% { transform: translateY(0); } 50% { transform: translateY(8px); } }
-    .scroll-indicator {
-      position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%);
-      width: 20px; height: 32px; border-radius: 999px; border: 2px solid rgba(220,230,225,0.2);
-      display: flex; align-items: flex-start; justify-content: center; padding-top: 6px;
-    }
-    .scroll-dot {
-      width: 4px; height: 6px; border-radius: 999px; background: var(--primary);
-      animation: bounce 2s infinite;
-    }
   </style>
 </head>
 <body>
@@ -308,7 +298,7 @@
         </a>
       </div>
     </div>
-    <div class="scroll-indicator"><div class="scroll-dot"></div></div>
+    
   </section>
 
   <div class="container">
@@ -534,11 +524,3 @@
 
 </body>
 </html>
-
-
-
-
-
-
-
-
